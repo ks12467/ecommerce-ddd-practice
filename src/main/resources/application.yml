@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ecommerce
+  profiles:
+    active: local
+
+jwt:
+  secret:
+    key: ${JWT_SECRET_KEY}
