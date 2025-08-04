@@ -1,6 +1,7 @@
 package com.hyeonlo.ecommerce.domain.auth.dto.request;
 
 import com.hyeonlo.ecommerce.domain.client.user.dto.CreateUserDto;
+import com.hyeonlo.ecommerce.domain.user.enums.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -26,7 +27,7 @@ public class CreateUserRequest {
     private String email;
 
     @NotBlank(message = "유저/관리자 권한을 선택해주세요")
-    private String userRole;
+    private UserRole userRole;
 
     public CreateUserDto userDto(String encodedPassword) {
         return new CreateUserDto(loginId, encodedPassword, userName, email, userRole);
