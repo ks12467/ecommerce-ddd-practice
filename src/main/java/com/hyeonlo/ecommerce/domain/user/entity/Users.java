@@ -32,12 +32,24 @@ public class Users extends TimeStamped {
 
     private UserStatus userStatus = UserStatus.ACTIVE;
 
-    public Users(String loginId, String userName, String email, UserRole userRole, UserStatus userStatus) {
+    private Users(String loginId, String password, String userName, String email, UserRole userRole, UserStatus userStatus) {
         this.loginId = loginId;
+        this.password = password;
         this.userName = userName;
         this.email = email;
         this.userRole = userRole;
         this.userStatus = userStatus;
+    }
+
+    public static Users from(String loginId, String password, String userName, String email, UserRole userRole, UserStatus userStatus) {
+        return new Users(
+                loginId,
+                password,
+                userName,
+                email,
+                userRole,
+                userStatus
+        );
     }
 
     public void updateLoginId(String loginId) {

@@ -58,7 +58,7 @@ public class AuthService {
                 user.getUserRole()
         );
         String refreshToken = jwtUtil.createRefreshToken(user.getUserId());
-        saveRefreshToken(user.getUserId(),refreshToken);
+        saveRefreshToken(user.getUserId(), refreshToken);
 
         return LoginResponse.of(
                 token,
@@ -67,9 +67,8 @@ public class AuthService {
     }
 
     private void saveRefreshToken(Long userId, String refreshToken) {
-        RefreshToken token = RefreshToken.builder().userId().token(refreshToken).build();
+        RefreshToken token = RefreshToken.builder().userId(userId).token(refreshToken).build();
         refreshTokenRepository.save(token);
     }
-
-
 }
+

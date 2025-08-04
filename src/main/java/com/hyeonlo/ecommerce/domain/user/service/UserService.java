@@ -1,9 +1,12 @@
 package com.hyeonlo.ecommerce.domain.user.service;
 
+import com.hyeonlo.ecommerce.domain.client.user.dto.CreateUserDto;
+import com.hyeonlo.ecommerce.domain.client.user.dto.UserDto;
 import com.hyeonlo.ecommerce.domain.user.dto.request.UpdateUserRequest;
 import com.hyeonlo.ecommerce.domain.user.dto.response.UpdateUserResponse;
 import com.hyeonlo.ecommerce.domain.user.dto.response.UserProfileResponse;
 import com.hyeonlo.ecommerce.domain.user.entity.Users;
+import com.hyeonlo.ecommerce.domain.user.enums.UserStatus;
 import com.hyeonlo.ecommerce.domain.user.repository.UserRepository;
 import com.hyeonlo.ecommerce.domain.user.status.ErrorUserStatus;
 import com.hyeonlo.ecommerce.global.exception.BaseException;
@@ -61,6 +64,31 @@ public class UserService {
 
         return UpdateUserResponse.of(
                 "회원 정보 수정 완료"
+        );
+    }
+
+    public void deleteUser(AuthUser authUser) {
+        Users user = userRepository.findById(authUser.getUserId())
+                .orElseThrow(() -> new BaseException(ErrorUserStatus.USER_NOT_FOUND));
+        user.chageStatus();
+    }
+
+    public CreateUserDto createUser(CreateUserDto createUserDto) {
+        Users user = Users.from(
+                createUserDto.getLoginId(),
+                createUserDto.getPassword(),
+                createUserDto.getUserName(),
+                createUserDto.getEmail(),
+                createUserDto.getUserRole(),
+                UserStatus.ACTIVE
+        );
+        userRepository.save(user);
+        return new CreateUserDto(
+                user.getLoginId(),
+                user.getPassword(),
+                user.getUserName(),
+                user.getEmail(),
+                user.getUserRole()
         );
     }
 }
