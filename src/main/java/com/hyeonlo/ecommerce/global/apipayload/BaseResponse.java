@@ -1,5 +1,6 @@
 package com.hyeonlo.ecommerce.global.apipayload;
 
+import com.hyeonlo.ecommerce.domain.auth.status.SuccessAuthStatus;
 import com.hyeonlo.ecommerce.global.apipayload.status.SuccessStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,16 @@ public class BaseResponse<T> {
                 baseCode.getCode(),
                 baseCode.getMessage(),
                 baseCode.getStatus()
+        );
+    }
+
+    public static <T> BaseResponse<T> authSuccess(SuccessAuthStatus successAuthStatus, T data) {
+        return new BaseResponse<>(
+                true,
+                data,
+                successAuthStatus.getCode(),
+                successAuthStatus.getMessage(),
+                successAuthStatus.getStatus()
         );
     }
 }

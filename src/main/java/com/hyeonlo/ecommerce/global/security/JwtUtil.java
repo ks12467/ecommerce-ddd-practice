@@ -63,18 +63,18 @@ public class JwtUtil {
                 .getBody();
     }
 
-//    public String createRefreshToken(Long userId) {
-//        Date date = new Date();
-//
-//        return BEARER_PREFIX +
-//                Jwts.builder()
-//                        .setSubject(String.valueOf(userId))
-//                        .claim("type", "refresh")
-//                        .setExpiration(new Date(date.getTime() + REFRESH_TOKEN_TIME))
-//                        .setIssuedAt(date)
-//                        .signWith(key, signatureAlgorithm)
-//                        .compact();
-//    }
+    public String createRefreshToken(Long userId) {
+        Date date = new Date();
+
+        return BEARER_PREFIX +
+                Jwts.builder()
+                        .setSubject(String.valueOf(userId))
+                        .claim("type", "refresh")
+                        .setExpiration(new Date(date.getTime() + REFRESH_TOKEN_TIME))
+                        .setIssuedAt(date)
+                        .signWith(key, signatureAlgorithm)
+                        .compact();
+    }
 
     public boolean validateToken(String token) {
         try {
