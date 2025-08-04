@@ -1,5 +1,6 @@
 package com.hyeonlo.ecommerce.global.security;
 
+import com.hyeonlo.ecommerce.domain.user.enums.UserRole;
 import com.hyeonlo.ecommerce.global.apipayload.status.ErrorStatus;
 import com.hyeonlo.ecommerce.global.exception.BaseException;
 import io.jsonwebtoken.*;

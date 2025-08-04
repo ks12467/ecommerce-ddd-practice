@@ -1,5 +1,7 @@
 package com.hyeonlo.ecommerce.domain.client.user.dto;
 
+import com.hyeonlo.ecommerce.domain.user.enums.UserRole;
+import com.hyeonlo.ecommerce.domain.user.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
